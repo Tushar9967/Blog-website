@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends 'blogapp/base.html' %}
+{% block body_block %}
+<div class="container">
+    <h1>Here are published posts :</h1>
+    <br>
+    <br>
+{% for post in newpost %}
+{% if post.published_date %}
+    <h3><a href="{% url 'blogapp:view_draft' pk=post.pk %}">{{ post.Title }}</a></h3>
+    <h6>created on : {{ post.create_date }}</h6>
+    <h6>published on : {{ post.published_date }}</h6>
+    <h6>comments : {{ post.comments.count }}</h6>
+    <br>
+{% endif %}    
+{% endfor %}
+</div>
+
+
+
+{% endblock %}

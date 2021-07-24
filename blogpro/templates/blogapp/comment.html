@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'blogapp/base.html' %}
+{% block body_block %}
+
+<div class="container">
+    <form  method="post">
+        <h4>write your comment :</h4>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class ="btn btn-primary" name="" value="post comment">
+      </form>
+</div>
+
+
+
+{% endblock %}
