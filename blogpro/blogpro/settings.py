@@ -14,8 +14,8 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR=os.path.join(BASE_DIR,'templates')
-STATIC_DIR=os.path.join(BASE_DIR,'static')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'blogpro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR,],
+        'DIRS': [TEMPLATES_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,14 +85,12 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-PASSWORD_HASHERS=[ 'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-'django.contrib.auth.hashers.Argon2PasswordHasher',
-'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-'django.contrib.auth.hashers.BCryptPasswordHasher',
-'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-]
-
-
+PASSWORD_HASHERS = ['django.contrib.auth.hashers.PBKDF2PasswordHasher',
+                    'django.contrib.auth.hashers.Argon2PasswordHasher',
+                    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+                    'django.contrib.auth.hashers.BCryptPasswordHasher',
+                    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+                    ]
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -129,10 +127,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[STATIC_DIR,]
+STATICFILES_DIRS = [STATIC_DIR, ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL='/blogapp/user_login'
+LOGIN_URL = '/blogapp/user_login'
