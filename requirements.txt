@@ -31,6 +31,7 @@ docutils==0.15.2
 et-xmlfile==1.0.1
 exponent-server-sdk==1.0.0
 filelock==3.0.12
+gunicorn==20.1.0
 idna==2.10
 isort==4.3.21
 itypes==1.2.0
