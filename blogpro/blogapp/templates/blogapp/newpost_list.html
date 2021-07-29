@@ -2,13 +2,17 @@
 {% extends 'blogapp/base.html' %}
 {% block body_block %}
 
-<div class="container">
 
+<div class="container">
+  {% if user.is_authenticated %}
   <ul>
     {% for xyz in newpost %}
     <li><a href="{% url 'blogapp:view_draft' pk=xyz.pk %}">{{ xyz.Title }}</a></li>
     {% endfor %}
+
   </ul>
+
+  {% endif %}
 
 
 </div>

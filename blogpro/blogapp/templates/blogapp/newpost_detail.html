@@ -4,23 +4,25 @@
 
 
 <div class="container">
-  <h1 class="heading" >{{ draft_view.Title }}</h1>
+  <h1 class="heading">{{ draft_view.Title }}</h1>
   <br>
   <br>
   <!-- <form  method="post" href="{% url 'index' %}">
     {% csrf_token %}
     <input type="submit" name="" value="Publish">
   </form>  -->
-  <h4>created on: <h6> {{ draft_view.create_date }} </h6></h4> 
+  <h4>created on: <h6> {{ draft_view.create_date }} </h6>
+  </h4>
   {% if draft_view.published_date %}
-  <h4>  Published on: <h6>{{ draft_view.published_date }}</h6></h4> 
+  <h4> Published on: <h6>{{ draft_view.published_date }}</h6>
+  </h4>
 
-{% else %}
-<br>
-<br>
+  {% else %}
+  <br>
+  <br>
   <a class="btn btn-primary" href="{% url 'blogapp:post_publish' pk=draft_view.pk %}">Publish</a>
-{% endif %}
- 
+  {% endif %}
+
   <br>
   <br>
   <h3>Text : </h3>
@@ -28,48 +30,55 @@
   <p>{{ draft_view.Text }}</p>
   <br>
   <br>
-  <a href="{% url 'blogapp:update' pk=draft_view.pk %}"> <input class="btn btn-warning" type="text" name="" value="Update"> </a>
-  <a href="{% url 'blogapp:delete' pk=draft_view.pk %}"> <input class="btn btn-danger" type="text" name="" value="Delete"> </a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'blogapp:update' pk=draft_view.pk %}"> <input class="btn btn-warning" type="text" name=""
+      value="Update"> </a>
+  <a href="{% url 'blogapp:delete' pk=draft_view.pk %}"> <input class="btn btn-danger" type="text" name=""
+      value="Delete"> </a>
+  {% endif %}
   <br>
   <br>
-  <a href="{% url 'blogapp:comment' pk=draft_view.pk %}"> <input class="btn btn-primary" type="text" name="" value="Add Comment"> </a>
+  <a href="{% url 'blogapp:comment' pk=draft_view.pk %}"> <input class="btn btn-primary" type="text" name=""
+      value="Add Comment"> </a>
   <br>
   <br>
   <br>
 
-{% for comment in draft_view.comments.all %}
-    {% if user.is_authenticated or comment.approved_comment %}
-    <div class="comment">
-      <h6>----------------------------------------------------------</h6>
-        <div class="date">
-           
-            {% if not comment.approved_comment %}
-                <a class="btn btn-default" href="{% url 'blogapp:comment_remove' pk=comment.pk %}"><input class="btn btn-danger" type="text" name="" value="remove"></span></a>
-                <a class="btn btn-default" href="{% url 'blogapp:comment_approve' pk=comment.pk %}"><input class="btn btn-warning" type="text" name="" value="approve"></span></a>
-            {% endif %}
-          
-        </div>
-        <br>
-        <h6>{{ comment.created_date }}</h6>
-        <strong>{{ comment.author }}</strong>
-        <p>{{ comment.text|linebreaks }}</p>
+  {% for comment in draft_view.comments.all %}
+  {% if user.is_authenticated or comment.approved_comment %}
+  <div class="comment">
+    <h6>----------------------------------------------------------</h6>
+    <div class="date">
+
+      {% if not comment.approved_comment %}
+      <a class="btn btn-default" href="{% url 'blogapp:comment_remove' pk=comment.pk %}"><input class="btn btn-danger"
+          type="text" name="" value="remove"></span></a>
+      <a class="btn btn-default" href="{% url 'blogapp:comment_approve' pk=comment.pk %}"><input class="btn btn-warning"
+          type="text" name="" value="approve"></span></a>
+      {% endif %}
+
     </div>
-    {% endif %}
-{% empty %}
-    <p>No comments here yet :(</p>
-{% endfor %}
+    <br>
+    <h6>{{ comment.created_date }}</h6>
+    <strong>{{ comment.author }}</strong>
+    <p>{{ comment.text|linebreaks }}</p>
+  </div>
+  {% endif %}
+  {% empty %}
+  <p>No comments here yet :(</p>
+  {% endfor %}
 
-{% for comment in draft_view.comments.all %}
+  {% for comment in draft_view.comments.all %}
   {% if not user.is_authenticated %}
   <h6>----------------------------------------------------------</h6>
   <br>
   <h6>{{ comment.created_date }}</h6>
   <strong>{{ comment.author }}</strong>
   <p>{{ comment.text|linebreaks }}</p>
-   
-  
-  {%endif%}
-{% endfor %}
 
 
-{% endblock %}
+  {% endif %}
+  {% endfor %}
+
+
+  {% endblock %}

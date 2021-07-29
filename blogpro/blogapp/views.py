@@ -9,6 +9,7 @@ from blogapp.models import NewPost, Comment
 from django.views.generic import DetailView, ListView, UpdateView, DeleteView
 from . import models
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -105,8 +106,19 @@ def NewPostView(request):
 #     return render(request, "blogapp/drafts_edit.html", context)
 
 class DraftsView(ListView):
+
     context_object_name = 'newpost'
     model = models.NewPost
+
+    def get_queryset(self):
+        return NewPost.objects.filter(Author_id=self.request.user)
+    # queryset = NewPost.objects.filter(Author_id=self.request.user)
+
+    # def get_queryset(self):
+    #     userr = User.objects.get()
+    #     if userr.is_authenticated:
+    #         query = NewPost.objects.filter(Author_id=userr)
+    #     return query
 
     # see newpost_list.html
 
