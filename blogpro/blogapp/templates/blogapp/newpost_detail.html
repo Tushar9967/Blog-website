@@ -5,36 +5,87 @@
 
 <div class="container">
   <h1 class="heading">{{ draft_view.Title }}</h1>
+  <div class="headinga">
+    <h6>by {{ draft_view.Author }}</h6>
+  </div>
   <br>
   <br>
+
   <!-- <form  method="post" href="{% url 'index' %}">
     {% csrf_token %}
     <input type="submit" name="" value="Publish">
   </form>  -->
-  <h4>created on: <h6> {{ draft_view.create_date }} </h6>
-  </h4>
-  {% if draft_view.published_date %}
-  <h4> Published on: <h6>{{ draft_view.published_date }}</h6>
-  </h4>
+  <!-- <div class="author">
+    <h4>Author: </h4>
+    <h6>{{ draft_view.Author }}</h6>
+  </div> -->
+  <div class="created">
+    <h4>created on: </h4>
+    <h6> {{ draft_view.create_date }} </h6>
 
-  {% else %}
-  <br>
-  <br>
-  <a class="btn btn-primary" href="{% url 'blogapp:post_publish' pk=draft_view.pk %}">Publish</a>
-  {% endif %}
+  </div>
+  <div class="publish">
+    {% if draft_view.published_date %}
+    <h4> Published on: </h4>
+    <h6>{{ draft_view.published_date }}</h6>
+
+
+    {% else %}
+    <br>
+    <br>
+    <a class="btn btn-primary" href="{% url 'blogapp:post_publish' pk=draft_view.pk %}">Publish</a>
+    {% endif %}
+  </div>
+
 
   <br>
+  <!-- <h3>Text : </h3> -->
   <br>
-  <h3>Text : </h3>
+  <div class=text>
+    <p>{{ draft_view.Text }}</p>
+  </div>
   <br>
-  <p>{{ draft_view.Text }}</p>
   <br>
-  <br>
+
+  <style>
+    .heading {
+      text-align: center;
+    }
+
+    .headinga {
+      text-align: center;
+    }
+
+    .text {
+      /* text-align: center; */
+      border-style: double;
+      padding-left: 50px;
+      padding-right: 50px;
+      margin-right: 100px;
+    }
+
+    .created h4,
+    h6 {
+      display: inline-block;
+    }
+
+    .author h4,
+    h6 {
+      display: inline-block;
+    }
+
+    .publish h4,
+    h6 {
+      display: inline-block;
+    }
+  </style>
+
+
   {% if user.is_authenticated %}
   <a href="{% url 'blogapp:update' pk=draft_view.pk %}"> <input class="btn btn-warning" type="text" name=""
-      value="Update"> </a>
+      value="Update this Blog"> </a>
   <a href="{% url 'blogapp:delete' pk=draft_view.pk %}"> <input class="btn btn-danger" type="text" name=""
-      value="Delete"> </a>
+      value="Delete this Blog"> </a>
   {% endif %}
   <br>
   <br>
@@ -51,17 +102,20 @@
     <div class="date">
 
       {% if not comment.approved_comment %}
-      <a class="btn btn-default" href="{% url 'blogapp:comment_remove' pk=comment.pk %}"><input class="btn btn-danger"
-          type="text" name="" value="remove"></span></a>
-      <a class="btn btn-default" href="{% url 'blogapp:comment_approve' pk=comment.pk %}"><input class="btn btn-warning"
-          type="text" name="" value="approve"></span></a>
+      <a class="btn btn-default" href="{% url 'blogapp:comment_remove' pk=comment.pk %}"><input
+          class="btn btn-outline-danger btn-sm" type="text" name="" value="remove"></span></a>
+      <a class="btn btn-default" href="{% url 'blogapp:comment_approve' pk=comment.pk %}"><input
+          class="btn btn-outline-primary btn-sm" type="text" name="" value="approve"></span></a>
       {% endif %}
 
+
+      <br>
+      <h4><strong>{{ comment.author }}</strong></h4>
+      <h6><br> {{ comment.created_date }}
+      </h6>
+
+      <p>{{ comment.text|linebreaks }}</p>
     </div>
-    <br>
-    <h6>{{ comment.created_date }}</h6>
-    <strong>{{ comment.author }}</strong>
-    <p>{{ comment.text|linebreaks }}</p>
   </div>
   {% endif %}
   {% empty %}
@@ -79,6 +133,12 @@
 
   {% endif %}
   {% endfor %}
+  <style>
+    .date h4,
+    h6 {
+      display: inline-block;
 
+    }
+  </style>
 
   {% endblock %}

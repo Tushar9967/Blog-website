@@ -5,15 +5,22 @@
     <h1>Here are published posts :</h1>
     <br>
     <br>
-{% for post in newpost %}
-{% if post.published_date %}
+    {% for post in newpost %}
+    {% if post.published_date %}
     <h3><a href="{% url 'blogapp:view_draft' pk=post.pk %}">{{ post.Title }}</a></h3>
-    <h6>created on : {{ post.create_date }}</h6>
-    <h6>published on : {{ post.published_date }}</h6>
-    <h6>comments : {{ post.comments.count }}</h6>
+    <h6>Author : {{ post.Author }}</h6>
+    <h6>Created on : {{ post.create_date }}</h6>
+    <h6>Published on : {{ post.published_date }}</h6>
+    <h6>Comments : {{ post.comments.count }}</h6>
     <br>
-{% endif %}    
-{% endfor %}
+    {% endif %}
+    {% empty %}
+    <br>
+    <br>
+    <h6>There are no pulished Blog :(</h6>
+    <br>
+    <h6>Be the first one to publish Blog, for that click on "New Post".</h6>
+    {% endfor %}
 </div>
 
 

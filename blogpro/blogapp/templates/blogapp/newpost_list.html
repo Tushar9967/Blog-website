@@ -4,13 +4,24 @@
 
 
 <div class="container">
+
+
   {% if user.is_authenticated %}
   <ul>
     {% for xyz in newpost %}
     <li><a href="{% url 'blogapp:view_draft' pk=xyz.pk %}">{{ xyz.Title }}</a></li>
+    {% empty %}
+    <br>
+    <br>
+    <h6>You have No Drafts to show here :(</h6>
+    <br>
+    <h6>Click on "New Post" to write your first blog.</h6>
+    <br>
+    <h6>After saving your blog come back here. </h6>
     {% endfor %}
 
   </ul>
+
 
   {% endif %}
 
