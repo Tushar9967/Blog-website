@@ -20,6 +20,7 @@ urlpatterns = [url('about/', views.about, name='about'),
                     views.comment_approve, name='comment_approve'),
                path('comment/<int:pk>/remove/',
                     views.comment_remove, name='comment_remove'),
+               path('getstarted/', views.started, name='started'),
 
                # path('<id>/delete',views.DraftsDeleteView,name='delete')
                ]

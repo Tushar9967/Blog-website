@@ -9,7 +9,11 @@
   {% if user.is_authenticated %}
   <ul>
     {% for xyz in newpost %}
-    <li><a href="{% url 'blogapp:view_draft' pk=xyz.pk %}">{{ xyz.Title }}</a></li>
+    <br>
+    <h1>Here are your Drafts: </h1>
+    <H3>
+      <li><a href="{% url 'blogapp:view_draft' pk=xyz.pk %}">{{ xyz.Title }}</a></li>
+    </h3>
     {% empty %}
     <br>
     <br>

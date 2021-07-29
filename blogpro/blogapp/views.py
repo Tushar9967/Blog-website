@@ -22,6 +22,10 @@ def about(request):
     return render(request, 'blogapp/about.html')
 
 
+def started(request):
+    return render(request, 'blogapp/started.html')
+
+
 def register(request):
     registered = False
 
