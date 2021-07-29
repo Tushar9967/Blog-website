@@ -1,1 +1,0 @@
-web: gunicorn blogpro/blogpro/wsgi:app
