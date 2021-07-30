@@ -1,1 +1,1 @@
-web: gunicorn blogpro/blogpro.wsgi
+web: gunicorn --pythonpath blogpro blogpro.wsgi
