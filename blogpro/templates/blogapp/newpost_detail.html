@@ -125,10 +125,14 @@
   {% for comment in draft_view.comments.all %}
   {% if not user.is_authenticated %}
   <h6>----------------------------------------------------------</h6>
+  <div class="date">
   <br>
-  <h6>{{ comment.created_date }}</h6>
-  <strong>{{ comment.author }}</strong>
-  <p>{{ comment.text|linebreaks }}</p>
+      <h4><strong>{{ comment.author }}</strong></h4>
+      <h6><br> {{ comment.created_date }}
+      </h6>
+
+      <p>{{ comment.text|linebreaks }}</p>
+    </div>    
 
 
   {% endif %}
