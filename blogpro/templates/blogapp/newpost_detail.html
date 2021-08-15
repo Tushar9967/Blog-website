@@ -81,6 +81,8 @@
   </style>
 
 
+
+{% if draft_view.Author == user %}
   {% if user.is_authenticated %}
   <a href="{% url 'blogapp:update' pk=draft_view.pk %}"> <input class="btn btn-warning" type="text" name=""
       value="Update this Blog"> </a>
@@ -89,6 +91,11 @@
   {% endif %}
   <br>
   <br>
+
+  {% endif %}
+
+
+
   <a href="{% url 'blogapp:comment' pk=draft_view.pk %}"> <input class="btn btn-primary" type="text" name=""
       value="Add Comment"> </a>
   <br>
@@ -101,11 +108,13 @@
     <h6>----------------------------------------------------------</h6>
     <div class="date">
 
+      {% if draft_view.Author == user %}
       {% if not comment.approved_comment %}
       <a class="btn btn-default" href="{% url 'blogapp:comment_remove' pk=comment.pk %}"><input
           class="btn btn-outline-danger btn-sm" type="text" name="" value="remove"></span></a>
       <a class="btn btn-default" href="{% url 'blogapp:comment_approve' pk=comment.pk %}"><input
           class="btn btn-outline-primary btn-sm" type="text" name="" value="approve"></span></a>
+      {% endif %}
       {% endif %}
 
 

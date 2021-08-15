@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-{% extends 'blogapp/base.html' %}
-{% block body_block %}
-
+{% extends 'blogapp/base.html' %} {% block body_block %}
 
 <div class="container">
-
-
   {% if user.is_authenticated %}
   <ul>
+    <br />
+    <h1>Here are your Drafts:</h1>
     {% for xyz in newpost %}
-    <br>
-    <h1>Here are your Drafts: </h1>
-    <H3>
-      <li><a href="{% url 'blogapp:view_draft' pk=xyz.pk %}">{{ xyz.Title }}</a></li>
+    <h3>
+      <li>
+        <a href="{% url 'blogapp:view_draft' pk=xyz.pk %}">{{ xyz.Title }}</a>
+      </li>
     </h3>
     {% empty %}
-    <br>
-    <br>
+    <br />
+    <br />
     <h6>You have No Drafts to show here :(</h6>
-    <br>
+    <br />
     <h6>Click on "New Post" to write your first blog.</h6>
-    <br>
-    <h6>After saving your blog come back here. </h6>
+    <br />
+    <h6>After saving your blog come back here.</h6>
     {% endfor %}
-
   </ul>
 
-
   {% endif %}
-
-
 </div>
-
 
 {% endblock %}
