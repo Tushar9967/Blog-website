@@ -1,67 +1,79 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4448780929318992"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-</head>
+  <body>
+    <!-- navbar -->
 
-<body>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'index' %}"
+          >MyEverydayBlog</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogapp:started' %}"
+          >How to get Started?</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogapp:about' %}}">About</a>
+      </li>
 
-  <!-- navbar -->
-
-  <ul class="nav">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{% url 'index' %}">MyEverydayBlog</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'blogapp:started' %}">How to get Started?</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'blogapp:about' %}}">About</a>
-    </li>
-
-    <!-- <li class="nav-item">
+      <!-- <li class="nav-item">
     <a id= "register" class="nav-link" href="{% url 'blogapp:register' %}">Register</a>
   </li> -->
 
-    {% if user.is_authenticated %}
-    <li class="nav-item">
-      <a id="newpost" class="nav-link" href="{% url 'blogapp:newpost' %}">New Post</a>
-    </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a id="newpost" class="nav-link" href="{% url 'blogapp:newpost' %}"
+          >New Post</a
+        >
+      </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'blogapp:drafts' %}">Drafts</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="">Welcome : {{ user.username }}</a>
-    </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogapp:drafts' %}">Drafts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Welcome : {{ user.username }}</a>
+      </li>
 
-    {% else %}
-    <li class="nav-item">
-      <a id="register" class="nav-link" href="{% url 'blogapp:register' %}">Register</a>
-    </li>
-    <li class="nav-item">
-      <a id="login" class="nav-link" href="{% url 'blogapp:user_login' %}">Login</a>
-    </li>
-    {% endif %}
+      {% else %}
+      <li class="nav-item">
+        <a id="register" class="nav-link" href="{% url 'blogapp:register' %}"
+          >Register</a
+        >
+      </li>
+      <li class="nav-item">
+        <a id="login" class="nav-link" href="{% url 'blogapp:user_login' %}"
+          >Login</a
+        >
+      </li>
+      {% endif %}
+    </ul>
 
-  </ul>
+    <!-- navbar ended -->
 
-  <!-- navbar ended -->
-
-  {% block body_block %}
-  {% endblock %}
-
-
-</body>
-
+    {% block body_block %} {% endblock %}
+  </body>
 </html>
